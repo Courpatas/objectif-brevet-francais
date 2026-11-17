@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2346a8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Préparation à l'épreuve de français du brevet 2027 : grammaire, orthographe, dictées et expression écrite.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Objectif Brevet Français</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">
+<style>
+/* Layout : une colonne de lecture (max 820px), barre d'onglets collante, cartes réservées aux éléments actifs (séance, exercice). Encre bleue de l'élève, stylo rouge du correcteur, papier Seyès pour écrire. */
+:root{
+  --paper:#f5f7fb; --card:#ffffff; --ink:#18213b; --muted:#59627c; --line:#dde2ee;
+  --blue:#2346a8; --blue-soft:#e6ecfb; --red:#c4302a; --red-soft:#fbe9e7;
+  --green:#1d7650; --green-soft:#e3f4ec; --amber:#a75f00; --amber-soft:#fdf1dc;
+  --seyes:rgba(35,70,168,.13); --seyes-strong:rgba(35,70,168,.28); --margin:rgba(196,48,42,.35);
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Verdana", system-ui, sans-serif;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f121b; --card:#171b27; --ink:#e6e9f2; --muted:#9aa2bb; --line:#293044;
+  --blue:#8fa8ff; --blue-soft:#1d2645; --red:#ff7d70; --red-soft:#3a1d1c;
+  --green:#62d09e; --green-soft:#16332a; --amber:#f2b552; --amber-soft:#3a2b12;
+  --seyes:rgba(143,168,255,.10); --seyes-strong:rgba(143,168,255,.22); --margin:rgba(255,125,112,.35);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f121b; --card:#171b27; --ink:#e6e9f2; --muted:#9aa2bb; --line:#293044;
+  --blue:#8fa8ff; --blue-soft:#1d2645; --red:#ff7d70; --red-soft:#3a1d1c;
+  --green:#62d09e; --green-soft:#16332a; --amber:#f2b552; --amber-soft:#3a2b12;
+  --seyes:rgba(143,168,255,.10); --seyes-strong:rgba(143,168,255,.22); --margin:rgba(255,125,112,.35);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.45rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+.top-inner{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px 0;display:flex;flex-direction:column;gap:6px}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand b{font-family:var(--f-display);font-size:1.15rem;font-weight:800}
+.brand b span{color:var(--red)}
+.sync{font-size:.78rem;color:var(--muted)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 -4px}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{flex:none;text-decoration:none;color:var(--muted);padding:8px 10px 10px;border-bottom:3px solid transparent;font-weight:700;font-size:.93rem;white-space:nowrap}
+nav.tabs a[aria-current="page"]{color:var(--blue);border-bottom-color:var(--blue)}
+
+main{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px;display:flex;flex-direction:column;gap:28px}
+section{display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:1.08rem;color:var(--muted);max-width:62ch}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.between{justify-content:space-between}
+
+.btn{appearance:none;border:0;background:var(--blue);color:var(--card);font-weight:700;padding:11px 18px;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;line-height:1.2}
+.btn:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+.btn.quiet{background:var(--blue-soft);color:var(--blue)}
+.btn.small{padding:7px 12px;font-size:.9rem}
+
+.linkcard{text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
+.linkcard:hover{border-color:var(--blue)}
+.linkcard h3{color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--blue-soft);color:var(--blue);white-space:nowrap}
+.chip.ok{background:var(--green-soft);color:var(--green)}
+.chip.warn{background:var(--amber-soft);color:var(--amber)}
+.chip.bad{background:var(--red-soft);color:var(--red)}
+.chip.none{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+
+.banner{border-radius:var(--radius);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-weight:700}
+.banner.warn{background:var(--amber-soft);color:var(--amber)}
+.banner.ok{background:var(--green-soft);color:var(--green)}
+.banner.info{background:var(--blue-soft);color:var(--blue)}
+.banner p{font-weight:400;color:var(--ink)}
+
+/* semaine */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{border:1px solid var(--line);border-radius:10px;padding:8px 4px;text-align:center;font-size:.8rem;color:var(--muted);display:flex;flex-direction:column;gap:2px;align-items:center}
+.day b{font-size:.95rem;color:var(--ink)}
+.day.planned{border-color:var(--blue);border-width:2px}
+.day.done{background:var(--green-soft);border-color:var(--green)}
+.day.done b{color:var(--green)}
+.day.today{box-shadow:0 0 0 3px var(--blue-soft)}
+.day .mark{height:16px;font-weight:700}
+
+/* progression des leçons */
+.lessons{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.lesson{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px}
+.lesson:hover{border-color:var(--blue)}
+.lesson .num{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;background:var(--blue-soft);color:var(--blue);font-variant-numeric:tabular-nums}
+.lesson.s-ok .num{background:var(--green-soft);color:var(--green)}
+.lesson.s-mid .num{background:var(--amber-soft);color:var(--amber)}
+.lesson.s-low .num{background:var(--red-soft);color:var(--red)}
+.lesson .txt{min-width:0;display:flex;flex-direction:column}
+.lesson .txt span{font-size:.8rem;color:var(--muted)}
+.wk{font-family:var(--f-display);font-weight:700;color:var(--muted);font-size:.9rem;grid-column:1/-1;margin-top:6px}
+
+/* séance */
+.session-bar{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.steps{display:flex;gap:6px;flex-wrap:wrap;font-size:.8rem}
+.steps span{padding:3px 9px;border-radius:999px;background:var(--paper);color:var(--muted);font-weight:700}
+.steps span.on{background:var(--blue);color:var(--card)}
+.steps span.done{background:var(--green-soft);color:var(--green)}
+.timer{font-family:var(--f-display);font-weight:700;font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);width:0;transition:width .4s}
+
+.rule{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:6px 16px;padding:12px 0;border-top:1px solid var(--line)}
+.rule:first-child{border-top:0}
+.rule .k{font-family:var(--f-display);font-weight:700}
+@media (max-width:560px){.rule{grid-template-columns:1fr}}
+.astuce{background:var(--amber-soft);border-radius:10px;padding:12px 14px;color:var(--ink)}
+.astuce::before{content:"Astuce";display:block;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);margin-bottom:2px}
+
+.ex{display:flex;flex-direction:column;gap:14px}
+.ex .q{font-size:1.15rem}
+.choix{display:grid;gap:8px}
+.choice{text-align:left;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:1.02rem}
+.choice:hover:not([disabled]){border-color:var(--blue)}
+.choice.right{border-color:var(--green);background:var(--green-soft)}
+.choice.wrong{border-color:var(--red);background:var(--red-soft)}
+.choice[disabled]{cursor:default}
+form.saisie{display:flex;gap:8px;flex-wrap:wrap}
+form.saisie input{flex:1 1 200px;min-width:0;font:inherit;font-size:1.1rem;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+form.saisie input:focus{border-color:var(--blue);outline:none}
+.fb{border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-left:5px solid}
+.fb.ok{background:var(--green-soft);border-color:var(--green)}
+.fb.ko{background:var(--red-soft);border-color:var(--red)}
+.fb strong{font-family:var(--f-display);font-size:1.05rem}
+.fb.ok strong{color:var(--green)}
+.fb.ko strong{color:var(--red)}
+.fb s{color:var(--red)}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dots i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.dots i.ok{background:var(--green)}
+.dots i.ko{background:var(--red)}
+.dots i.cur{background:var(--blue)}
+
+/* papier Seyès */
+.seyes{width:100%;min-height:260px;resize:vertical;font:inherit;font-size:1.1rem;line-height:32px;padding:4px 14px 4px 54px;border:1px solid var(--line);border-radius:10px;color:var(--ink);
+  background-color:var(--card);
+  background-image:linear-gradient(90deg,transparent 40px,var(--margin) 40px,var(--margin) 42px,transparent 42px),
+    linear-gradient(var(--seyes-strong) 1px,transparent 1px),
+    linear-gradient(var(--seyes) 1px,transparent 1px);
+  background-size:100% 100%,100% 32px,100% 8px;background-position:0 0,0 31px,0 7px;background-attachment:local}
+.seyes:focus{outline:none;border-color:var(--blue)}
+.dict-out{font-size:1.12rem;line-height:2.1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.w-ok{}
+.w-sub{color:var(--red);font-weight:700;text-decoration:underline wavy var(--red);text-underline-offset:5px}
+.w-miss{color:var(--amber);font-weight:700;border-bottom:2px dashed var(--amber)}
+.w-given{display:inline-block;font-size:.78rem;color:var(--red);text-decoration:line-through;transform:translateY(-.7em);margin-right:2px}
+mark.err{background:var(--red-soft);color:var(--ink);border-bottom:2px solid var(--red);padding:0 2px;border-radius:3px}
+mark.err sup{color:var(--red);font-weight:700;font-size:.7rem;margin-left:2px}
+
+table.errs{width:100%;border-collapse:collapse;font-size:.95rem}
+table.errs th{text-align:left;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--line)}
+table.errs td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tablewrap{overflow-x:auto}
+.from{color:var(--red);text-decoration:line-through}
+.to{color:var(--green);font-weight:700}
+
+.notions{display:grid;gap:0}
+.notion{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:4px 16px;padding:11px 0;border-top:1px solid var(--line)}
+.notion b{font-family:var(--f-display)}
+@media (max-width:560px){.notion{grid-template-columns:1fr}}
+ul.clean{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
+details{border:1px solid var(--line);border-radius:10px;background:var(--card)}
+details summary{cursor:pointer;padding:12px 14px;font-weight:700}
+details > div{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
+.wordbox{display:flex;flex-wrap:wrap;gap:6px}
+.wordbox button{border:1px dashed var(--blue);background:var(--blue-soft);color:var(--blue);border-radius:999px;padding:4px 10px;font-size:.88rem;cursor:pointer}
+.counter{font-size:.88rem;font-variant-numeric:tabular-nums}
+.score{font-family:var(--f-display);font-weight:800;font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.score small{font-size:1rem;color:var(--muted);font-weight:500}
+.texte-source{border-left:4px solid var(--blue);padding:10px 14px;background:var(--blue-soft);border-radius:0 10px 10px 0;font-style:italic}
+.struct{display:grid;gap:10px}
+.part{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:start;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.part .pts{font-family:var(--f-display);font-weight:800;font-size:1.5rem;color:var(--blue);font-variant-numeric:tabular-nums}
+.part .pts small{display:block;font-size:.8rem;color:var(--muted);font-weight:500}
+@media (max-width:480px){.part{grid-template-columns:1fr}}
+.pre{white-space:pre-wrap}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spinner{animation:none}.bar i{transition:none}}
+.daypick{display:flex;gap:6px;flex-wrap:wrap}
+.daypick label{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;background:var(--card)}
+input[type=time]{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+textarea.ics{width:100%;min-height:120px;font-family:ui-monospace,monospace;font-size:.75rem;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:8px}
+.hist{display:flex;flex-direction:column}
+.hist div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:.92rem}
+.hist div:first-child{border-top:0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand"><b>Objectif Brevet <span>Français</span></b><span class="sync" id="sync">Progression enregistrée sur cet appareil</span></div>
+    <nav class="tabs" id="tabs">
+      <a href="#accueil" data-r="accueil">Ma semaine</a>
+      <a href="#langue" data-r="langue">Orthographe &amp; grammaire</a>
+      <a href="#expression" data-r="expression">Expression écrite</a>
+      <a href="#themes" data-r="themes">Thèmes du programme</a>
+      <a href="#epreuve" data-r="epreuve">L'épreuve</a>
+    </nav>
+  </div>
+</header>
+<main id="view"></main>
+
+<script src="contenu.js"></script>
+<script>
+/* ---------- utilitaires ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const strip = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
+const norm = s => String(s).trim().replace(/[’`ʼ]/g, "'").replace(/\s+/g, " ").replace(/[.!?]+$/, "").toLowerCase();
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pad = n => String(n).padStart(2, "0");
+const dayKey = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+const JOURS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+const isoDow = d => (d.getDay() + 6) % 7; // 0 = lundi
+function mondayOf(d) { const m = new Date(d); m.setHours(0,0,0,0); m.setDate(m.getDate() - isoDow(m)); return m; }
+function frDate(k) { const [y,m,d] = k.split("-").map(Number); return new Date(y, m-1, d).toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" }); }
+
+/* ---------- état et sauvegarde ---------- */
+const KEY = "objectif-brevet-fr-v1";
+const fresh = () => ({ lecons: {}, seances: [], erreurs: [], quiz: {}, ecrits: [], rappel: { jours: [0, 2, 4], heure: "17:30" } });
+let S = fresh();
+try { const t = localStorage.getItem(KEY); if (t) S = Object.assign(fresh(), JSON.parse(t)); } catch (e) {}
+let docRef = null, chain = Promise.resolve();
+function setSync(txt) { const el = $("#sync"); if (el) el.textContent = txt; }
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+  if (docRef) {
+    const body = JSON.parse(JSON.stringify(S));
+    chain = chain.then(() => docRef.set(body)).then(() => setSync("Progression enregistrée en ligne")).catch(() => setSync("Enregistrée sur cet appareil (connexion indisponible)"));
+  }
+}
+(async () => {
+  try {
+    if (!window.claude) return;
+    const db = await claude.use("db");
+    if (!db) return;
+    const ref = db.doc("suivi/eleve");
+    const snap = await ref.get();
+    docRef = ref;
+    if (snap.exists) {
+      const d = JSON.parse(JSON.stringify(snap.data()));
+      if ((d.seances || []).length >= S.seances.length) { S = Object.assign(fresh(), d); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+      else save();
+    } else if (S.seances.length || Object.keys(S.lecons).length || S.ecrits.length) save();
+    setSync("Progression enregistrée en ligne");
+    if (!busy()) render();
+  } catch (e) { docRef = null; }
+})();
+
+/* ---------- calcul de la semaine ---------- */
+function weekInfo() {
+  const now = new Date(), mon = mondayOf(now), today = isoDow(now);
+  const done = new Set(S.seances.filter(s => { const [y,m,d] = s.d.split("-").map(Number); return new Date(y, m-1, d) >= mon; }).map(s => s.d));
+  const doneCount = S.seances.filter(s => { const [y,m,d] = s.d.split("-").map(Number); return new Date(y, m-1, d) >= mon; }).length;
+  const plan = S.rappel.jours.slice().sort();
+  const [hh, mm] = S.rappel.heure.split(":").map(Number);
+  const pastPlanned = plan.filter(j => j < today || (j === today && (now.getHours() * 60 + now.getMinutes()) >= hh * 60 + mm)).length;
+  const days = JOURS.map((n, i) => { const d = new Date(mon); d.setDate(mon.getDate() + i); return { n, num: d.getDate(), key: dayKey(d), planned: plan.includes(i), done: done.has(dayKey(d)), today: i === today }; });
+  return { days, doneCount: Math.min(doneCount, 99), objectif: plan.length, retard: Math.max(0, pastPlanned - doneCount), todayPlanned: plan.includes(today), doneToday: done.has(dayKey(now)) };
+}
+function nextLesson() {
+  const notDone = LECONS.find(l => !S.lecons[l.id]);
+  if (notDone) return notDone;
+  return LECONS.slice().sort((a, b) => ratio(a.id) - ratio(b.id))[0];
+}
+function ratio(id) { const r = S.lecons[id]; return r ? r.score / r.total : -1; }
+function lessonClass(id) { const r = ratio(id); if (r < 0) return ""; return r >= .8 ? "s-ok" : r >= .55 ? "s-mid" : "s-low"; }
+
+/* ---------- routeur ---------- */
+let session = null, timerId = null;
+const busy = () => !!session && session.step !== "bilan" && location.hash.startsWith("#lecon-");
+function render() {
+  const h = (location.hash || "#accueil").slice(1);
+  const base = h.split("-")[0];
+  const tab = { accueil: "accueil", langue: "langue", lecon: "langue", expression: "expression", ecrire: "expression", themes: "themes", theme: "themes", epreuve: "epreuve" }[base] || "accueil";
+  document.querySelectorAll("#tabs a").forEach(a => { if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  if (!h.startsWith("lecon-")) { session = null; clearInterval(timerId); }
+  const v = $("#view");
+  if (h.startsWith("lecon-")) return viewLecon(Number(h.slice(6)));
+  if (h.startsWith("theme-")) return viewTheme(h.slice(6));
+  if (h.startsWith("ecrire-")) return viewEcrire(h.slice(7));
+  ({ langue: viewLangue, expression: viewExpression, themes: viewThemes, epreuve: viewEpreuve }[h] || viewAccueil)();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", render);
+
+/* ---------- ACCUEIL ---------- */
+function viewAccueil() {
+  const w = weekInfo(), nl = nextLesson();
+  let banner = "";
+  if (w.retard > 0) banner = `<div class="banner warn" role="status"><div>Rappel : il te manque ${w.retard} séance${w.retard > 1 ? "s" : ""} cette semaine.<p>Une séance dure 20 minutes. Tu peux la faire maintenant pour rattraper ton retard.</p></div></div>`;
+  else if (w.todayPlanned && !w.doneToday) banner = `<div class="banner info" role="status"><div>Aujourd'hui, c'est jour de séance.<p>20 minutes de grammaire et d'orthographe t'attendent.</p></div></div>`;
+  else if (w.doneCount >= w.objectif && w.objectif > 0) banner = `<div class="banner ok" role="status"><div>Objectif de la semaine atteint : ${w.doneCount} séance${w.doneCount > 1 ? "s" : ""} sur ${w.objectif}.<p>Tu peux continuer avec un exercice d'expression écrite ou un thème du programme.</p></div></div>`;
+  const recent = S.seances.slice(-6).reverse();
+  $("#view").innerHTML = `
+  <section>
+    <span class="eyebrow">Brevet des collèges · session 2027</span>
+    <h1>Ta semaine de français</h1>
+    <p class="lead">Trois séances de 20 minutes par semaine pour progresser en orthographe et en grammaire, puis des exercices courts pour mieux écrire.</p>
+  </section>
+  ${banner}
+  <section class="card">
+    <div class="row between"><h2>Cette semaine</h2><span class="chip ${w.doneCount >= w.objectif ? "ok" : ""}">${w.doneCount} / ${w.objectif} séances</span></div>
+    <div class="week">${w.days.map(d => `<div class="day ${d.planned ? "planned" : ""} ${d.done ? "done" : ""} ${d.today ? "today" : ""}"><span>${d.n}</span><b>${d.num}</b><span class="mark">${d.done ? "✓" : d.planned ? "•" : ""}</span></div>`).join("")}</div>
+    <p class="small muted">Les jours encadrés sont tes jours de séance. Tu peux les changer plus bas.</p>
+    <div class="row between" style="border-top:1px solid var(--line);padding-top:14px">
+      <div><span class="eyebrow">Prochaine séance · leçon ${nl.id} sur 18</span><h3>${esc(nl.titre)}</h3><p class="small muted">${esc(nl.objectif)}</p></div>
+      <a class="btn" href="#lecon-${nl.id}">Commencer · 20 min</a>
+    </div>
+  </section>
+  <section>
+    <div class="row between"><h2>Où tu en es</h2><a href="#langue" class="small">Voir toutes les leçons</a></div>
+    <div class="row small muted"><span class="chip ok">80 % et plus</span><span class="chip warn">55 à 79 %</span><span class="chip bad">moins de 55 % : à refaire</span><span class="chip none">pas encore faite</span></div>
+    <div class="lessons">${LECONS.map(l => lessonTile(l)).join("")}</div>
+  </section>
+  <section class="grid">
+    <a class="linkcard" href="#expression"><span class="eyebrow">Écrire</span><h3>Expression écrite</h3><p class="small muted">12 exercices courts, corrigés en détail.</p></a>
+    <a class="linkcard" href="#themes"><span class="eyebrow">Lire et comprendre</span><h3>Thèmes du programme</h3><p class="small muted">Les 5 thèmes de 3e, leurs notions et un quiz.</p></a>
+    <a class="linkcard" href="#epreuve"><span class="eyebrow">Le jour J</span><h3>L'épreuve de français</h3><p class="small muted">Barème, durée et méthode de relecture.</p></a>
+  </section>
+  <section class="card" id="rappels">
+    <h2>Rappels</h2>
+    <p class="small">Choisis tes trois jours et l'heure de ta séance. Ajoute ensuite les rappels à l'agenda de ton téléphone : il te préviendra même quand l'application est fermée. Ici, un message te prévient s'il te manque une séance dans la semaine.</p>
+    <div class="daypick" id="daypick">${JOURS.map((j, i) => `<label><input type="checkbox" id="jour-${i}" value="${i}" ${S.rappel.jours.includes(i) ? "checked" : ""}> ${j}</label>`).join("")}</div>
+    <div class="row"><label for="heure">Heure</label><input type="time" id="heure" value="${S.rappel.heure}"><button class="btn quiet small" id="saveRappel">Enregistrer</button></div>
+    <div class="row"><button class="btn" id="icsBtn">Ajouter les rappels à mon agenda</button><span class="small muted" id="icsMsg"></span></div>
+    <div id="icsFallback" hidden></div>
+  </section>
+  <section class="card">
+    <h2>Suivi des séances</h2>
+    <p class="small muted">Pour toi et tes parents : les dernières séances terminées.</p>
+    ${recent.length ? `<div class="hist">${recent.map(s => { const l = LECONS.find(x => x.id === s.l); return `<div><span>${frDate(s.d)} · Leçon ${s.l} : ${esc(l ? l.titre : "")}</span><b>${s.score}/${s.total} · dictée : ${s.dict} erreur${s.dict > 1 ? "s" : ""}</b></div>`; }).join("")}</div>` : `<p class="muted">Aucune séance pour l'instant. Les séances terminées apparaîtront ici avec le score des exercices et le nombre d'erreurs à la dictée.</p>`}
+    ${S.ecrits.length ? `<p class="small">Textes écrits : <b>${S.ecrits.length}</b> · dernier : ${esc((EXERCICES.find(e => e.id === S.ecrits[S.ecrits.length - 1].id) || {}).titre || "")}</p>` : ""}
+  </section>`;
+  $("#saveRappel").onclick = () => {
+    const jours = [...document.querySelectorAll("#daypick input:checked")].map(i => Number(i.value));
+    if (!jours.length) { $("#icsMsg").textContent = "Choisis au moins un jour."; return; }
+    S.rappel = { jours, heure: $("#heure").value || "17:30" }; save(); render();
+  };
+  $("#icsBtn").onclick = addToCalendar;
+}
+function lessonTile(l) {
+  const r = S.lecons[l.id];
+  return `<a class="lesson ${lessonClass(l.id)}" href="#lecon-${l.id}"><span class="num">${l.id}</span><span class="txt"><b>${esc(l.titre)}</b><span>${esc(l.cat)} · ${r ? `meilleur score ${r.score}/${r.total}` : "pas encore faite"}</span></span></a>`;
+}
+
+/* ---------- rappels agenda (.ics) ---------- */
+function buildIcs() {
+  const codes = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
+  const jours = S.rappel.jours.slice().sort();
+  const [hh, mm] = S.rappel.heure.split(":");
+  const d = new Date(); d.setHours(0,0,0,0);
+  for (let i = 0; i < 8; i++) { if (jours.includes(isoDow(d))) break; d.setDate(d.getDate() + 1); }
+  const ymd = d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Objectif Brevet Francais//FR","CALSCALE:GREGORIAN","BEGIN:VEVENT",
+    "UID:objectif-brevet-fr-" + Date.now() + "@rappel", "DTSTAMP:" + stamp, "DTSTART:" + ymd + "T" + hh + mm + "00", "DURATION:PT20M",
+    "RRULE:FREQ=WEEKLY;BYDAY=" + jours.map(j => codes[j]).join(",") + ";UNTIL=20270705T000000Z",
+    "SUMMARY:Séance de français (20 min)", "DESCRIPTION:Ouvre Objectif Brevet Français et fais ta séance de grammaire et d'orthographe.",
+    "BEGIN:VALARM","TRIGGER:PT0M","ACTION:DISPLAY","DESCRIPTION:C'est l'heure de ta séance de français (20 min)","END:VALARM",
+    "BEGIN:VALARM","TRIGGER:PT2H","ACTION:DISPLAY","DESCRIPTION:As-tu fait ta séance de français aujourd'hui ?","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+}
+async function addToCalendar() {
+  const ics = buildIcs(), msg = $("#icsMsg");
+  let dl = null;
+  try { dl = window.claude ? await claude.use("downloads") : null; } catch (e) {}
+  if (dl) {
+    try { await dl.save({ filename: "rappels-francais.ics", data: ics }); msg.textContent = "Fichier prêt : ouvre-le pour l'ajouter à ton agenda."; return; }
+    catch (e) { if (e && e.code === "cancelled") { msg.textContent = ""; return; } }
+  }
+  if (!window.claude) {
+    try { const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); const a = document.createElement("a"); a.href = url; a.download = "rappels-francais.ics"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000); msg.textContent = "Fichier téléchargé : ouvre-le pour ajouter les rappels à ton agenda."; return; } catch (e) {}
+  }
+  const fb = $("#icsFallback"); fb.hidden = false;
+  fb.innerHTML = `<p class="small">Le téléchargement n'est pas disponible ici. Deux solutions : crée dans ton téléphone une alarme répétée les jours choisis à ${esc(S.rappel.heure)}, ou copie ce texte dans un fichier nommé <b>rappels-francais.ics</b> et ouvre-le.</p><textarea class="ics" id="icsText" readonly>${esc(ics)}</textarea><button class="btn quiet small" id="copyIcs">Copier</button>`;
+  $("#copyIcs").onclick = () => { navigator.clipboard.writeText(ics).then(() => $("#copyIcs").textContent = "Copié", () => { $("#icsText").select(); }); };
+}
+
+/* ---------- widget d'exercice (feedback riche) ---------- */
+let uid = 0;
+function exWidget(ex, opts, onDone) {
+  const el = document.createElement("div"); el.className = "ex"; const id = "rep-" + (++uid);
+  const order = ex.t === "qcm" ? shuffle(ex.c.map((_, i) => i)) : null;
+  el.innerHTML = (opts.label ? `<span class="eyebrow">${opts.label}</span>` : "") + `<p class="q">${ex.q}</p>` +
+    (ex.t === "qcm" ? `<div class="choix">${order.map(i => `<button class="choice" data-i="${i}">${esc(ex.c[i])}</button>`).join("")}</div>`
+      : `<form class="saisie"><label class="eyebrow" for="${id}" style="flex-basis:100%">Ta réponse</label><input id="${id}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><button class="btn">Valider</button></form>`) +
+    `<div class="fb" hidden></div>`;
+  const fb = $(".fb", el);
+  function finish(ok, given) {
+    const right = ex.t === "qcm" ? ex.c[ex.r] : ex.r[0];
+    let html;
+    if (ok) html = `<strong>${["Bravo !", "Exact !", "Parfait !", "Bien vu !"][Math.floor(Math.random() * 4)]}</strong><p>${ex.e}</p>`;
+    else {
+      let hint = "";
+      if (ex.t === "saisie") {
+        const g = norm(given);
+        if (!g) hint = "<p>Tu n'as rien écrit : lis bien l'explication puis retiens la bonne forme.</p>";
+        else if (ex.r.some(r => strip(norm(r)) === strip(g))) hint = "<p><b>Presque !</b> Seul l'accent est faux. Au brevet, un accent oublié compte comme une erreur.</p>";
+        else if (ex.r.some(r => norm(r).replace(/[sxe]$/, "") === g.replace(/[sxe]$/, ""))) hint = "<p><b>Presque !</b> C'est la terminaison qui pose problème : vérifie l'accord.</p>";
+      }
+      html = `<strong>Pas tout à fait.</strong><p>${given !== undefined ? `Ta réponse : <s>${esc(given || "(vide)")}</s> → ` : ""}la bonne réponse est <b>${esc(right)}</b>.</p><p>${ex.e}</p>${hint}${opts.astuce ? `<div class="astuce">${opts.astuce}</div>` : ""}`;
+    }
+    fb.className = "fb " + (ok ? "ok" : "ko"); fb.innerHTML = html; fb.hidden = false;
+    const next = document.createElement("button"); next.className = "btn"; next.textContent = opts.nextLabel || "Continuer";
+    next.onclick = () => onDone(ok); fb.appendChild(next); next.focus();
+  }
+  if (ex.t === "qcm") el.querySelectorAll(".choice").forEach(b => b.onclick = () => {
+    const i = Number(b.dataset.i), ok = i === ex.r;
+    el.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (Number(x.dataset.i) === ex.r) x.classList.add("right"); });
+    if (!ok) b.classList.add("wrong");
+    finish(ok);
+  });
+  else $("form", el).onsubmit = e => {
+    e.preventDefault(); const inp = $("input", el); const g = inp.value;
+    if (!g.trim()) { inp.focus(); return; }
+    inp.disabled = true; $("button", el).disabled = true;
+    finish(ex.r.some(r => norm(r) === norm(g)), g);
+  };
+  setTimeout(() => { const i = $("input", el); if (i) i.focus(); }, 30);
+  return el;
+}
+
+/* ---------- ORTHOGRAPHE & GRAMMAIRE ---------- */
+function viewLangue() {
+  const weeks = [];
+  for (let i = 0; i < 6; i++) weeks.push(LECONS.slice(i * 3, i * 3 + 3));
+  const nb = Object.keys(S.lecons).length, errs = S.erreurs.length;
+  $("#view").innerHTML = `
+  <section>
+    <span class="eyebrow">Programme sur 6 semaines</span>
+    <h1>Orthographe &amp; grammaire</h1>
+    <p class="lead">18 leçons de 20 minutes, trois par semaine. Chaque séance suit le même plan : la règle, des exercices corrigés un par un, puis une mini-dictée.</p>
+  </section>
+  <section class="grid">
+    <div class="card"><span class="eyebrow">5 min</span><h3>La règle</h3><p class="small muted">Une fiche courte avec des exemples et une astuce pour s'en souvenir.</p></div>
+    <div class="card"><span class="eyebrow">10 min</span><h3>Les exercices</h3><p class="small muted">7 ou 8 questions. À chaque réponse, une explication : pourquoi c'est juste, ou comment trouver la bonne forme.</p></div>
+    <div class="card"><span class="eyebrow">5 min</span><h3>La mini-dictée</h3><p class="small muted">Écoute, écris, puis vois tes erreurs mot par mot avec la règle à appliquer.</p></div>
+  </section>
+  <div class="row"><span class="chip">${nb} / 18 leçons faites</span>${errs ? `<span class="chip warn">${errs} question${errs > 1 ? "s" : ""} à revoir : elles reviennent en échauffement</span>` : ""}</div>
+  <section><div class="lessons">${weeks.map((w, i) => `<div class="wk">Semaine ${i + 1}</div>` + w.map(lessonTile).join("")).join("")}</div></section>`;
+}
+
+function viewLecon(id) {
+  const L = LECONS.find(l => l.id === id);
+  if (!L) { location.hash = "#langue"; return; }
+  if (!session || session.id !== id) {
+    const warm = shuffle(S.erreurs.filter(e => e.l !== id)).slice(0, 3);
+    session = { id, step: "intro", idx: 0, res: [], warm, warmIdx: 0, start: null, dict: null };
+  }
+  drawSession();
+}
+function stepList() { const s = []; if (session.warm.length) s.push(["echauffement", "Échauffement"]); s.push(["regle", "La règle"], ["ex", "Exercices"], ["dictee", "Dictée"], ["bilan", "Bilan"]); return s; }
+function drawSession() {
+  const L = LECONS.find(l => l.id === session.id), v = $("#view");
+  const steps = stepList(), curI = steps.findIndex(s => s[0] === session.step);
+  const bar = session.step === "intro" ? "" : `<div class="session-bar"><div class="row between"><div class="steps">${steps.map((s, i) => `<span class="${i === curI ? "on" : i < curI ? "done" : ""}">${s[1]}</span>`).join("")}</div><span class="timer" id="timer">0:00 / 20:00</span></div><div class="bar"><i id="tbar"></i></div></div>`;
+  v.innerHTML = `<section><span class="eyebrow">Leçon ${L.id} sur 18 · ${esc(L.cat)}</span><h1>${esc(L.titre)}</h1></section>${bar}<div id="stage" style="display:flex;flex-direction:column;gap:16px"></div>`;
+  const st = $("#stage");
+  if (session.step === "intro") {
+    st.innerHTML = `<div class="card"><p class="lead">${esc(L.objectif)}</p><ul class="clean"><li>${session.warm.length ? `Échauffement : ${session.warm.length} question${session.warm.length > 1 ? "s" : ""} que tu avais ratée${session.warm.length > 1 ? "s" : ""}` : "Pas d'échauffement aujourd'hui"}</li><li>La règle : environ 5 minutes</li><li>${L.ex.length} exercices : environ 10 minutes</li><li>Une mini-dictée : environ 5 minutes</li></ul><div class="row"><button class="btn" id="go">Commencer la séance</button><a href="#langue" class="small">Choisir une autre leçon</a></div></div>`;
+    $("#go").onclick = () => { session.start = Date.now(); session.step = session.warm.length ? "echauffement" : "regle"; startTimer(); drawSession(); };
+    return;
+  }
+  startTimer();
+  if (session.step === "echauffement") {
+    const w = session.warm[session.warmIdx], WL = LECONS.find(l => l.id === w.l), ex = WL && WL.ex[w.i];
+    if (!ex) { S.erreurs = S.erreurs.filter(e => e !== w); nextWarm(); return; }
+    const box = document.createElement("div"); box.className = "card";
+    box.appendChild(exWidget(ex, { label: `Révision · leçon ${WL.id} : ${WL.titre}`, astuce: WL.astuce }, ok => {
+      if (ok) S.erreurs = S.erreurs.filter(e => !(e.l === w.l && e.i === w.i));
+      save(); nextWarm();
+    }));
+    st.appendChild(box);
+  } else if (session.step === "regle") {
+    st.innerHTML = `<div class="card"><h2>La règle</h2><div>${L.regle.map(r => `<div class="rule"><span class="k">${r[0]}</span><span>${r[1]}</span></div>`).join("")}</div><div class="astuce">${L.astuce}</div><div class="row"><button class="btn" id="ok">J'ai compris, aux exercices</button></div></div>`;
+    $("#ok").onclick = () => { session.step = "ex"; drawSession(); };
+  } else if (session.step === "ex") {
+    const ex = L.ex[session.idx];
+    const box = document.createElement("div"); box.className = "card";
+    box.innerHTML = `<div class="row between"><span class="eyebrow">Exercice ${session.idx + 1} sur ${L.ex.length}</span><div class="dots">${L.ex.map((_, i) => `<i class="${i < session.res.length ? (session.res[i] ? "ok" : "ko") : i === session.idx ? "cur" : ""}"></i>`).join("")}</div></div>`;
+    box.appendChild(exWidget(ex, { astuce: L.astuce, nextLabel: session.idx + 1 < L.ex.length ? "Question suivante" : "Passer à la dictée" }, ok => {
+      session.res.push(ok);
+      if (!ok && !S.erreurs.some(e => e.l === L.id && e.i === session.idx)) S.erreurs.push({ l: L.id, i: session.idx });
+      if (ok) S.erreurs = S.erreurs.filter(e => !(e.l === L.id && e.i === session.idx));
+      session.idx++;
+      if (session.idx >= L.ex.length) session.step = "dictee";
+      drawSession();
+    }));
+    st.appendChild(box);
+  } else if (session.step === "dictee") drawDictee(L, st);
+  else if (session.step === "bilan") drawBilan(L, st);
+  window.scrollTo(0, 0);
+}
+function nextWarm() { session.warmIdx++; if (session.warmIdx >= session.warm.length) session.step = "regle"; drawSession(); }
+function startTimer() {
+  clearInterval(timerId);
+  const tick = () => {
+    const t = $("#timer"); if (!t || !session || !session.start) return;
+    const s = Math.floor((Date.now() - session.start) / 1000);
+    t.textContent = Math.floor(s / 60) + ":" + pad(s % 60) + " / 20:00";
+    const b = $("#tbar"); if (b) { b.style.width = Math.min(100, s / 12) + "%"; b.style.background = s > 1200 ? "var(--amber)" : ""; }
+  };
+  tick(); timerId = setInterval(tick, 1000);
+}
+
+/* ---------- dictée ---------- */
+const WORD = /[A-Za-zÀ-ÖØ-öø-ÿŒœÆæ0-9]+(?:['’-][A-Za-zÀ-ÖØ-öø-ÿŒœÆæ0-9]+)*/g;
+const EQUIV = { "paraît": "parait", "parait": "paraît" };
+const wn = w => w.replace(/’/g, "'").toLowerCase();
+const same = (a, b) => { a = wn(a); b = wn(b); return a === b || EQUIV[a] === b; };
+function lev(a, b) { const d = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1)); return d[a.length][b.length]; }
+function subCost(a, b) { if (same(a, b)) return 0; const x = strip(wn(a)), y = strip(wn(b)); if (x === y) return .3; const dist = lev(x, y); return dist <= Math.max(1, Math.floor(Math.max(x.length, y.length) / 2)) ? .6 + dist * .05 : 1.6; }
+function compareWords(exp, got) {
+  const n = exp.length, m = got.length, D = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = 1; i <= n; i++) D[i][0] = i; for (let j = 1; j <= m; j++) D[0][j] = j;
+  for (let i = 1; i <= n; i++) for (let j = 1; j <= m; j++) D[i][j] = Math.min(D[i-1][j] + 1, D[i][j-1] + 1, D[i-1][j-1] + subCost(exp[i-1], got[j-1]));
+  const status = new Array(n).fill(null), extra = []; let i = n, j = m;
+  while (i > 0 || j > 0) {
+    if (i > 0 && j > 0 && Math.abs(D[i][j] - (D[i-1][j-1] + subCost(exp[i-1], got[j-1]))) < 1e-9) { status[i-1] = same(exp[i-1], got[j-1]) ? { t: "ok" } : { t: "sub", g: got[j-1] }; i--; j--; }
+    else if (i > 0 && Math.abs(D[i][j] - (D[i-1][j] + 1)) < 1e-9) { status[i-1] = { t: "miss" }; i--; }
+    else { extra.unshift(got[j-1]); j--; }
+  }
+  return { status, extra };
+}
+function drawDictee(L, st) {
+  const phrases = L.dictee.texte.match(/[^.!?;]+[.!?;]+(\s*»)?/g) || [L.dictee.texte];
+  const voix = "speechSynthesis" in window;
+  st.innerHTML = `<div class="card">
+    <h2>Mini-dictée</h2>
+    <p class="small muted">${voix ? "Écoute chaque phrase autant de fois que nécessaire, puis écris-la. La ponctuation est dite à voix haute dans ta tête : pense aux points et aux virgules." : "La lecture à voix haute n'est pas disponible sur cet appareil. Demande à quelqu'un de te dicter le texte."}</p>
+    ${voix ? `<div class="row">${phrases.map((p, i) => `<button class="btn quiet small" data-p="${i}">▶ Phrase ${i + 1}</button>`).join("")}<button class="btn ghost small" id="all">▶ Tout le texte</button><label class="small"><input type="checkbox" id="lent" checked> lentement</label></div>`
+      : `<details><summary>Afficher le texte (pour la personne qui dicte)</summary><div><p>${esc(L.dictee.texte)}</p></div></details>`}
+    <label class="eyebrow" for="dictTxt">Ta dictée</label>
+    <textarea class="seyes" id="dictTxt" spellcheck="false" autocorrect="off" autocapitalize="sentences" placeholder="Écris ici…"></textarea>
+    <div class="row"><button class="btn" id="corr">Corriger ma dictée</button></div>
+  </div>`;
+  const speak = t => { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "fr-FR"; u.rate = $("#lent") && $("#lent").checked ? .72 : .95; const v = speechSynthesis.getVoices().find(v => v.lang && v.lang.toLowerCase().startsWith("fr")); if (v) u.voice = v; speechSynthesis.speak(u); } catch (e) {} };
+  st.querySelectorAll("[data-p]").forEach(b => b.onclick = () => speak(phrases[Number(b.dataset.p)]));
+  if ($("#all")) $("#all").onclick = () => speak(L.dictee.texte);
+  $("#corr").onclick = () => {
+    const got = $("#dictTxt").value;
+    if (got.trim().split(/\s+/).length < 5) { $("#dictTxt").focus(); return; }
+    try { speechSynthesis.cancel(); } catch (e) {}
+    const exp = L.dictee.texte.match(WORD), g = got.match(WORD) || [];
+    const { status, extra } = compareWords(exp, g);
+    session.dict = { got, status, extra, exp };
+    session.step = "bilan"; finishSession(L); drawSession();
+  };
+}
+function finishSession(L) {
+  const score = session.res.filter(Boolean).length, total = L.ex.length;
+  const dict = session.dict.status.filter(s => s.t !== "ok").length + session.dict.extra.length;
+  const prev = S.lecons[L.id];
+  S.lecons[L.id] = { score: prev ? Math.max(prev.score, score) : score, total, dernier: score, dict, date: dayKey(new Date()), fois: (prev ? prev.fois : 0) + 1 };
+  S.seances.push({ d: dayKey(new Date()), l: L.id, score, total, dict, min: Math.round((Date.now() - (session.start || Date.now())) / 60000) });
+  if (S.seances.length > 300) S.seances = S.seances.slice(-300);
+  save(); clearInterval(timerId);
+}
+function explainWord(L, expected, given) {
+  const k = wn(expected);
+  const p = L.dictee.pieges[k] || L.dictee.pieges[expected];
+  let why = "";
+  if (given && strip(wn(given)) === strip(k)) why = "Erreur d'accent. ";
+  else if (given && wn(given).replace(/[sxtde]+$/, "") === k.replace(/[sxtde]+$/, "")) why = "Erreur de terminaison (accord ou conjugaison). ";
+  else if (given && wn(given).length && k.length && wn(given)[0] === k[0] && Math.abs(given.length - k.length) <= 2) why = "Erreur d'orthographe d'usage : apprends ce mot par cœur. ";
+  return why + (p || "Relis ce mot en appliquant la règle de la leçon.");
+}
+function drawBilan(L, st) {
+  const score = session.res.filter(Boolean).length, total = L.ex.length, d = session.dict;
+  let k = 0;
+  const marked = L.dictee.texte.replace(WORD, w => {
+    const s = d.status[k++];
+    if (!s || s.t === "ok") return esc(w);
+    if (s.t === "sub") return `<span class="w-given">${esc(s.g)}</span><span class="w-sub">${esc(w)}</span>`;
+    return `<span class="w-miss" title="mot oublié">${esc(w)}</span>`;
+  });
+  const errs = d.status.map((s, i) => ({ s, w: d.exp[i] })).filter(x => x.s.t !== "ok");
+  const nbD = errs.length + d.extra.length;
+  const ratioEx = score / total;
+  const msg = ratioEx >= .85 && nbD <= 2 ? "Excellente séance ! La règle est en train de devenir un réflexe." : ratioEx >= .6 ? "Bonne séance. Relis les explications ci-dessous : ce sont elles qui feront la différence." : "Cette règle demande encore du travail, c'est normal. Les questions ratées reviendront en échauffement lors des prochaines séances.";
+  const missed = session.res.map((ok, i) => ok ? null : L.ex[i]).filter(Boolean);
+  const w = weekInfo();
+  st.innerHTML = `
+  <div class="card">
+    <div class="row between"><h2>Bilan de la séance</h2><span class="chip ok">Séance enregistrée · ${w.doneCount}/${w.objectif} cette semaine</span></div>
+    <div class="row" style="gap:32px">
+      <div><span class="eyebrow">Exercices</span><div class="score">${score}<small> / ${total}</small></div></div>
+      <div><span class="eyebrow">Dictée</span><div class="score">${nbD}<small> erreur${nbD > 1 ? "s" : ""}</small></div></div>
+    </div>
+    <p>${msg}</p>
+  </div>
+  <div class="card">
+    <h3>Ta dictée corrigée</h3>
+    <p class="small muted">En rouge souligné : le mot juste, avec au-dessus ce que tu as écrit. En orange pointillé : un mot oublié.</p>
+    <div class="dict-out">${marked}</div>
+    ${d.extra.length ? `<p class="small">Mots en trop : ${d.extra.map(esc).join(", ")}</p>` : ""}
+    ${errs.length ? `<div class="tablewrap"><table class="errs"><thead><tr><th>Tu as écrit</th><th>Il fallait</th><th>Pourquoi</th></tr></thead><tbody>${errs.map(x => `<tr><td class="from">${x.s.t === "sub" ? esc(x.s.g) : "(oublié)"}</td><td class="to">${esc(x.w)}</td><td>${esc(explainWord(L, x.w, x.s.g))}</td></tr>`).join("")}</tbody></table></div>` : `<div class="banner ok"><div>Aucune erreur sur les mots, bravo !<p>Vérifie quand même tes majuscules et ta ponctuation en comparant avec le texte.</p></div></div>`}
+  </div>
+  ${missed.length ? `<div class="card"><h3>À retenir</h3><ul class="clean">${missed.map(e => `<li>${e.q.replace(/<[^>]+>/g, "")} → <b>${esc(e.t === "qcm" ? e.c[e.r] : e.r[0])}</b>. ${e.e}</li>`).join("")}</ul><div class="astuce">${L.astuce}</div></div>` : ""}
+  <div class="row"><a class="btn" href="#accueil">Retour à ma semaine</a><a class="btn ghost" href="#expression">Faire un exercice d'écriture</a><button class="btn quiet" id="again">Refaire cette leçon</button></div>`;
+  $("#again").onclick = () => { session = null; viewLecon(L.id); };
+}
+
+/* ---------- THÈMES ---------- */
+function viewThemes() {
+  $("#view").innerHTML = `
+  <section>
+    <span class="eyebrow">Programme de cycle 4 · classe de 3e</span>
+    <h1>Thèmes du programme</h1>
+    <p class="lead">Les textes du brevet 2027 se rattachent aux thèmes du programme de cycle 4, surtout à ceux de 3e. Pour chacun : la grande question, les notions à connaître, des œuvres repères, un quiz et des sujets de rédaction.</p>
+  </section>
+  <section class="grid">${THEMES.map(t => { const q = S.quiz[t.id]; return `<a class="linkcard" href="#theme-${t.id}"><span class="eyebrow">3e</span><h3>${esc(t.titre)}</h3><p class="small muted">${esc(t.question)}</p><span>${q ? `<span class="chip ${q.score === q.total ? "ok" : "warn"}">Quiz : ${q.score}/${q.total}</span>` : `<span class="chip none">Quiz à faire</span>`}</span></a>`; }).join("")}</section>
+  <section class="card">
+    <h2>Les thèmes de 4e et de 5e</h2>
+    <p class="small muted">Le brevet porte sur tout le cycle 4 : un texte peut aussi se rattacher à l'un de ces thèmes, vus les années précédentes.</p>
+    <div class="grid">${AUTRES_THEMES.map(g => `<div><span class="eyebrow">${g.niveau}</span><ul class="clean">${g.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>`).join("")}</div>
+  </section>`;
+}
+function viewTheme(id) {
+  const T = THEMES.find(t => t.id === id); if (!T) { location.hash = "#themes"; return; }
+  const ex = EXERCICES.find(e => e.id === T.exercice);
+  $("#view").innerHTML = `
+  <section><a href="#themes" class="small">← Tous les thèmes</a><span class="eyebrow">Thème de 3e</span><h1>${esc(T.titre)}</h1><p class="lead">${esc(T.question)}</p></section>
+  <section><h2>L'enjeu</h2><p>${esc(T.enjeu)}</p></section>
+  <section><h2>Les notions à connaître</h2><div class="notions">${T.notions.map(n => `<div class="notion"><b>${esc(n[0])}</b><span>${esc(n[1])}</span></div>`).join("")}</div></section>
+  <section class="grid">
+    <div class="card"><h3>Œuvres et auteurs repères</h3><ul class="clean">${T.auteurs.map(a => `<li>${esc(a)}</li>`).join("")}</ul></div>
+    <div class="card"><h3>Ce qu'on peut te demander</h3><ul class="clean">${T.attendus.map(a => `<li>${esc(a)}</li>`).join("")}</ul></div>
+  </section>
+  <div class="astuce">${esc(T.methode)}</div>
+  <section class="card" id="quiz"><div class="row between"><h2>Quiz</h2><span class="chip" id="qscore">0 / ${T.quiz.length}</span></div><div id="qstage"></div></section>
+  <section class="card"><h2>Sujets de rédaction</h2>
+    <div><span class="eyebrow">Sujet de réflexion</span><p>${esc(T.redaction.reflexion)}</p></div>
+    <div><span class="eyebrow">Sujet d'imagination</span><p>${esc(T.redaction.imagination)}</p></div>
+    ${ex ? `<p class="small muted">Pour t'y préparer pas à pas, commence par un exercice court :</p><a class="btn quiet" href="#ecrire-${ex.id}">${esc(ex.titre)} · ${esc(ex.competence)}</a>` : ""}
+  </section>`;
+  let i = 0, sc = 0;
+  const step = () => {
+    const qs = $("#qstage"); qs.innerHTML = "";
+    if (i >= T.quiz.length) {
+      S.quiz[T.id] = { score: sc, total: T.quiz.length, date: dayKey(new Date()) }; save();
+      qs.innerHTML = `<div class="banner ${sc === T.quiz.length ? "ok" : "info"}"><div>Résultat : ${sc} / ${T.quiz.length}<p>${sc === T.quiz.length ? "Tu maîtrises les notions de ce thème." : "Relis les notions ci-dessus, puis refais le quiz."}</p></div></div><div class="row"><button class="btn quiet" id="redo">Refaire le quiz</button></div>`;
+      $("#redo").onclick = () => { i = 0; sc = 0; $("#qscore").textContent = "0 / " + T.quiz.length; step(); };
+      return;
+    }
+    qs.appendChild(exWidget(T.quiz[i], { label: `Question ${i + 1} sur ${T.quiz.length}`, nextLabel: i + 1 < T.quiz.length ? "Question suivante" : "Voir mon résultat" }, ok => { if (ok) sc++; i++; $("#qscore").textContent = sc + " / " + T.quiz.length; step(); }));
+  };
+  step();
+}
+
+/* ---------- EXPRESSION ÉCRITE ---------- */
+const NIVEAUX = { 1: ["Niveau 1", "Écrire une phrase juste"], 2: ["Niveau 2", "Écrire un court texte"], 3: ["Niveau 3", "Vers la rédaction du brevet"] };
+function viewExpression() {
+  $("#view").innerHTML = `
+  <section>
+    <span class="eyebrow">Courts et progressifs</span>
+    <h1>Expression écrite</h1>
+    <p class="lead">${window.claude ? "Des exercices de 3 à 10 phrases. Chaque texte reçoit une correction détaillée : ce qui est réussi, chaque erreur expliquée avec sa règle, un conseil prioritaire et une version améliorée de ton propre texte." : "Des exercices de 3 à 10 phrases. Après avoir écrit, tu obtiens des vérifications automatiques (longueur, majuscules, mots de liaison, répétitions), une grille de relecture et un exemple de réponse à comparer avec ton texte."}</p>
+  </section>
+  ${[1, 2, 3].map(n => `<section><div><span class="eyebrow">${NIVEAUX[n][0]}</span><h2>${NIVEAUX[n][1]}</h2></div><div class="grid">${EXERCICES.filter(e => e.niveau === n).map(e => { const done = S.ecrits.filter(x => x.id === e.id); const last = done[done.length - 1]; return `<a class="linkcard" href="#ecrire-${e.id}"><h3>${esc(e.titre)}</h3><p class="small muted">${esc(e.competence)}</p><span>${last ? `<span class="chip ok">Fait${last.note != null ? ` · ${last.note}/10` : ""}</span>` : `<span class="chip none">${e.min}-${e.max} mots</span>`}</span></a>`; }).join("")}</div></section>`).join("")}`;
+}
+const CONNECTEURS = ["d'abord", "tout d'abord", "ensuite", "puis", "enfin", "de plus", "en effet", "car", "parce que", "donc", "ainsi", "c'est pourquoi", "mais", "cependant", "pourtant", "toutefois", "par exemple", "alors que", "bien que", "en revanche", "néanmoins", "soudain", "alors", "finalement", "à mon avis", "selon moi", "en conclusion", "aussi", "or"];
+const STOP = new Set("dans avec pour sans sous chez mais donc elle elles nous vous ils leur leurs cette ces mon mes ton tes son ses une des les est sont était avait avoir être fait plus très tout tous toute aussi comme quand alors puis que qui quoi dont pas peu bien même".split(" "));
+function quickCheck(txt, ex) {
+  const mots = (txt.match(WORD) || []).length;
+  const phrases = txt.split(/(?<=[.!?…])\s+|\n+/).map(s => s.trim()).filter(s => s.length > 1);
+  const out = [];
+  out.push(mots < ex.min ? ["warn", `${mots} mots : c'est un peu court (objectif ${ex.min} à ${ex.max}). Développe une idée de plus.`] : mots > ex.max * 1.3 ? ["warn", `${mots} mots : c'est long pour cet exercice. Garde l'essentiel.`] : ["ok", `${mots} mots : la longueur est bonne.`]);
+  const longues = phrases.filter(p => (p.match(WORD) || []).length > 32);
+  if (longues.length) out.push(["warn", `${longues.length} phrase${longues.length > 1 ? "s" : ""} de plus de 32 mots. Coupe-la en deux avec un point : ce sera plus clair.`]);
+  if (!/[.!?»…]\s*$/.test(txt.trim())) out.push(["warn", "Ton texte ne se termine pas par un point."]);
+  const sansMaj = phrases.filter(p => /^[«—\-\s]*[a-zàâçéèêëîïôûù]/.test(p));
+  if (sansMaj.length) out.push(["warn", `${sansMaj.length} phrase${sansMaj.length > 1 ? "s commencent" : " commence"} sans majuscule.`]);
+  const low = " " + txt.toLowerCase().replace(/[’]/g, "'") + " ";
+  const found = CONNECTEURS.filter(c => new RegExp("[^a-zàâçéèêëîïôûù']" + c.replace(/'/g, "'") + "[^a-zàâçéèêëîïôûù]").test(low));
+  out.push(found.length ? ["ok", `Mots de liaison utilisés : ${found.slice(0, 6).join(", ")}.`] : ["warn", "Aucun mot de liaison repéré. Ajoute-en pour relier tes idées (puis, car, mais, ensuite…)."]);
+  const freq = {}; (txt.toLowerCase().match(WORD) || []).forEach(w => { if (w.length > 3 && !STOP.has(w)) freq[w] = (freq[w] || 0) + 1; });
+  const rep = Object.entries(freq).filter(([, n]) => n >= 3).map(([w, n]) => `« ${w} » (${n} fois)`);
+  if (rep.length) out.push(["warn", `Répétitions : ${rep.slice(0, 4).join(", ")}. Cherche un synonyme ou un pronom.`]);
+  const etPuis = (low.match(/ (et puis|et après|après) /g) || []).length;
+  if (etPuis >= 2) out.push(["warn", "Tu utilises souvent « et puis » ou « après ». Varie : ensuite, alors, plus tard, soudain."]);
+  return out;
+}
+let aiCtl = null;
+function viewEcrire(id) {
+  const E = EXERCICES.find(e => e.id === id); if (!E) { location.hash = "#expression"; return; }
+  let draft = ""; try { draft = localStorage.getItem("brouillon-" + id) || ""; } catch (e) {}
+  $("#view").innerHTML = `
+  <section><a href="#expression" class="small">← Tous les exercices</a><span class="eyebrow">${NIVEAUX[E.niveau][0]} · ${esc(E.competence)}</span><h1>${esc(E.titre)}</h1></section>
+  <section class="card">
+    ${E.texte ? `<div class="texte-source">${esc(E.texte)}</div>` : ""}
+    <p class="lead" style="color:var(--ink)">${esc(E.consigne)}</p>
+    <details><summary>Les étapes pour réussir</summary><div><ul class="clean">${E.aide.map(a => `<li>${esc(a)}</li>`).join("")}</ul></div></details>
+    <div><span class="eyebrow">Boîte à mots · touche un mot pour l'ajouter</span><div class="wordbox">${E.boite.map(b => `<button type="button" data-w="${esc(b)}">${esc(b)}</button>`).join("")}</div></div>
+    <label class="eyebrow" for="ecrit">Ton texte</label>
+    <textarea class="seyes" id="ecrit" spellcheck="false" autocorrect="off">${esc(draft)}</textarea>
+    <div class="row between"><span class="counter" id="cnt"></span><div class="row"><button class="btn" id="corriger">Corriger mon texte</button></div></div>
+  </section>
+  <div id="retour" style="display:flex;flex-direction:column;gap:16px"></div>
+  <details><summary>Voir un exemple de réponse</summary><div><p class="small muted">Lis-le APRÈS avoir écrit ton texte. Ce n'est pas la seule bonne réponse.</p><p class="pre">${esc(E.modele)}</p></div></details>`;
+  const ta = $("#ecrit");
+  const upd = () => { const n = (ta.value.match(WORD) || []).length; $("#cnt").textContent = `${n} mot${n > 1 ? "s" : ""} · objectif ${E.min} à ${E.max}`; $("#cnt").style.color = n >= E.min && n <= E.max * 1.3 ? "var(--green)" : "var(--muted)"; try { localStorage.setItem("brouillon-" + id, ta.value); } catch (e) {} };
+  ta.oninput = upd; upd();
+  document.querySelectorAll(".wordbox button").forEach(b => b.onclick = () => {
+    const w = b.dataset.w, s = ta.selectionStart ?? ta.value.length, before = ta.value.slice(0, s), sep = before && !/\s$/.test(before) ? " " : "";
+    ta.value = before + sep + w + " " + ta.value.slice(s); ta.focus(); const p = (before + sep + w + " ").length; ta.setSelectionRange(p, p); upd();
+  });
+  $("#corriger").onclick = () => corriger(E, ta.value);
+}
+async function corriger(E, txt) {
+  const out = $("#retour");
+  if ((txt.match(WORD) || []).length < 5) { out.innerHTML = `<div class="banner warn"><div>Écris au moins une phrase complète avant de demander la correction.</div></div>`; return; }
+  const checks = quickCheck(txt, E);
+  out.innerHTML = `<div class="card"><h2>Vérifications rapides</h2><ul class="clean">${checks.map(c => `<li><span class="chip ${c[0]}">${c[0] === "ok" ? "OK" : "À revoir"}</span> ${esc(c[1])}</li>`).join("")}</ul></div><div class="card" id="ia"><h2>Correction détaillée</h2>${window.claude ? `<p class="muted"><span class="spinner"></span> Le correcteur lit ton texte… cela prend en général entre 15 et 60 secondes.</p><div class="row"><button class="btn quiet small" id="stop">Arrêter</button></div>` : ""}</div>`;
+  const entry = { id: E.id, d: dayKey(new Date()), mots: (txt.match(WORD) || []).length, note: null };
+  const ia = $("#ia");
+  let sample = null;
+  try { sample = window.claude ? await claude.use("sample") : null; } catch (e) {}
+  if (!sample) { ia.innerHTML = fallbackFeedback(E); S.ecrits.push(entry); save(); const d = $("details:last-of-type"); if (d) d.open = true; return; }
+  aiCtl = new AbortController();
+  $("#stop").onclick = () => aiCtl && aiCtl.abort();
+  const prompt = `Tu es un professeur de français bienveillant et précis. Tu corriges un exercice d'expression écrite d'un élève de 3e qui prépare le brevet des collèges 2027. Cet élève a de vraies difficultés en orthographe, en grammaire et pour s'exprimer à l'écrit : encourage-le sincèrement, sois concret, explique chaque règle en une phrase simple avec un exemple, tutoie-le. Ne lui fais pas la morale.
+
+Exercice : ${E.titre} (compétence : ${E.competence})
+${E.texte ? "Texte support : " + E.texte + "\n" : ""}Consigne : ${E.consigne}
+Critères de réussite : ${E.criteres.join(" ; ")}
+Longueur attendue : ${E.min} à ${E.max} mots.
+
+Texte de l'élève, entre les balises :
+<texte>
+${txt.slice(0, 6000)}
+</texte>
+
+Réponds uniquement avec un objet JSON de cette forme exacte :
+{"bravo":"une phrase d'encouragement qui cite une réussite précise du texte","note":6,"commentaire_note":"une phrase qui explique la note","consigne":{"respectee":true,"commentaire":"ce qui est fait ou ce qui manque par rapport aux critères"},"points_forts":["2 ou 3 réussites précises"],"erreurs":[{"extrait":"quelques mots copiés EXACTEMENT du texte de l'élève, contenant l'erreur","correction":"la forme corrigée de cet extrait","type":"orthographe | accord | conjugaison | homophone | ponctuation | syntaxe | vocabulaire","regle":"la règle en une phrase simple + un mini-exemple ou une astuce de vérification"}],"expression":[{"conseil":"un conseil pour mieux écrire (phrase trop longue, répétition, mot imprécis, lien logique manquant)","exemple":"la phrase de l'élève réécrite selon ce conseil"}],"priorite":"LE point à travailler en priorité la prochaine fois, formulé comme un objectif simple","version_amelioree":"le texte de l'élève corrigé et légèrement amélioré, en gardant ses idées, son plan et un vocabulaire de collégien"}
+
+Règles : "note" est un entier sur 10, indicatif et bienveillant, qui tient compte de la consigne et de la langue. Liste au maximum 10 erreurs de langue, les plus importantes d'abord ; ne liste pas comme erreur un choix de style correct. Si le texte n'a aucune erreur, renvoie une liste vide. "expression" contient 1 à 3 conseils. N'invente rien qui ne soit pas dans le texte.`;
+  try {
+    const r = await sample.json(prompt, { signal: aiCtl.signal, modelTier: "default" });
+    entry.note = Number.isFinite(Number(r.note)) ? Math.max(0, Math.min(10, Math.round(Number(r.note)))) : null;
+    S.ecrits.push(entry); if (S.ecrits.length > 200) S.ecrits = S.ecrits.slice(-200); save();
+    ia.innerHTML = renderFeedback(r, txt, E);
+  } catch (e) {
+    const code = e && e.code;
+    if (code === "cancelled") { ia.innerHTML = `<h2>Correction détaillée</h2><p class="muted">Correction arrêtée. Tu peux relancer quand tu veux.</p>`; return; }
+    if (code === "rate_limited") { ia.innerHTML = `<h2>Correction détaillée</h2><p>Trop de corrections demandées d'un coup. Attends quelques minutes puis clique à nouveau sur « Corriger mon texte ».</p>` + fallbackFeedback(E, true); return; }
+    if (code === "invalid_json" || code === "upstream_error" || code === "empty_completion") { ia.innerHTML = `<h2>Correction détaillée</h2><p>Le correcteur n'a pas pu terminer. Clique à nouveau sur « Corriger mon texte » pour réessayer.</p>`; return; }
+    S.ecrits.push(entry); save();
+    ia.innerHTML = fallbackFeedback(E);
+  }
+}
+function fallbackFeedback(E, short) {
+  return `${short ? "" : `<h2>Correction détaillée</h2><p>${window.claude ? "La correction automatique détaillée n'est pas disponible sur cet appareil." : "Relis maintenant ton texte avec la grille ci-dessous, un point à la fois."} ${window.claude ? " Relis ton texte avec cette grille, puis compare avec l'exemple de réponse en bas de page." : " Ensuite, ouvre l'exemple de réponse en bas de page et compare : qu'est-ce qui est mieux dit ?"}</p>`}
+  <h3>Grille de relecture</h3><ul class="clean">${E.criteres.map(c => `<li>☐ ${esc(c)}</li>`).join("")}<li>☐ Chaque verbe est accordé avec son sujet</li><li>☐ Les participes passés sont bien écrits (-é ou -er ? accord ?)</li><li>☐ Les homophones sont vérifiés (a/à, et/est, son/sont, ce/se…)</li><li>☐ Chaque phrase commence par une majuscule et finit par un point</li></ul>`;
+}
+function highlight(txt, errs) {
+  const ranges = [];
+  errs.forEach((e, n) => {
+    const x = String(e.extrait || "").trim(); if (!x) return;
+    let i = txt.indexOf(x); if (i < 0) i = txt.toLowerCase().indexOf(x.toLowerCase());
+    while (i >= 0 && ranges.some(r => i < r.b && i + x.length > r.a)) { const j = txt.indexOf(x, i + 1); i = j; }
+    if (i >= 0) ranges.push({ a: i, b: i + x.length, n: n + 1 });
+  });
+  ranges.sort((p, q) => p.a - q.a);
+  let out = "", pos = 0;
+  ranges.forEach(r => { out += esc(txt.slice(pos, r.a)) + `<mark class="err">${esc(txt.slice(r.a, r.b))}<sup>${r.n}</sup></mark>`; pos = r.b; });
+  return out + esc(txt.slice(pos));
+}
+function renderFeedback(r, txt, E) {
+  const errs = Array.isArray(r.erreurs) ? r.erreurs : [], expr = Array.isArray(r.expression) ? r.expression : [], pf = Array.isArray(r.points_forts) ? r.points_forts : [];
+  const note = Number.isFinite(Number(r.note)) ? Math.round(Number(r.note)) : null;
+  const c = r.consigne || {};
+  return `<div class="row between"><h2>Correction détaillée</h2>${note != null ? `<div class="score">${note}<small> / 10</small></div>` : ""}</div>
+  ${r.bravo ? `<div class="banner ok"><div>${esc(r.bravo)}${r.commentaire_note ? `<p>${esc(r.commentaire_note)}</p>` : ""}</div></div>` : ""}
+  <div><span class="eyebrow">La consigne</span><p><span class="chip ${c.respectee ? "ok" : "warn"}">${c.respectee ? "Respectée" : "Pas complètement respectée"}</span> ${esc(c.commentaire || "")}</p></div>
+  ${pf.length ? `<div><span class="eyebrow">Ce qui est réussi</span><ul class="clean">${pf.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div>` : ""}
+  <div><span class="eyebrow">Ton texte annoté</span><div class="dict-out pre" style="line-height:1.9">${highlight(txt, errs)}</div></div>
+  ${errs.length ? `<div><span class="eyebrow">${errs.length} erreur${errs.length > 1 ? "s" : ""} de langue expliquée${errs.length > 1 ? "s" : ""}</span><div class="tablewrap"><table class="errs"><thead><tr><th>N°</th><th>Tu as écrit</th><th>Correction</th><th>La règle</th></tr></thead><tbody>${errs.map((e, i) => `<tr><td><b>${i + 1}</b></td><td class="from">${esc(e.extrait)}</td><td class="to">${esc(e.correction)}</td><td><span class="chip">${esc(e.type || "")}</span><br>${esc(e.regle)}</td></tr>`).join("")}</tbody></table></div></div>` : `<div class="banner ok"><div>Aucune erreur de langue relevée. Bravo !</div></div>`}
+  ${expr.length ? `<div><span class="eyebrow">Pour mieux t'exprimer</span><ul class="clean">${expr.map(x => `<li>${esc(x.conseil)}${x.exemple ? `<br><span class="muted">Par exemple :</span> <i>${esc(x.exemple)}</i>` : ""}</li>`).join("")}</ul></div>` : ""}
+  ${r.priorite ? `<div class="astuce">${esc(r.priorite)}</div>` : ""}
+  ${r.version_amelioree ? `<details><summary>Voir ton texte corrigé et amélioré</summary><div><p class="pre">${esc(r.version_amelioree)}</p><p class="small muted">Compare phrase par phrase avec ton texte : repère ce qui a changé et pourquoi.</p></div></details>` : ""}
+  <div class="row"><button class="btn quiet" onclick="document.getElementById('ecrit').focus();window.scrollTo({top:0,behavior:'smooth'})">Améliorer mon texte</button><a class="btn ghost" href="#expression">Autre exercice</a></div>`;
+}
+
+/* ---------- L'ÉPREUVE ---------- */
+function viewEpreuve() {
+  $("#view").innerHTML = `
+  <section>
+    <span class="eyebrow">Session 2027</span>
+    <h1>L'épreuve de français</h1>
+    <p class="lead">Une épreuve écrite de 3 heures, notée sur 100 points puis ramenée sur 20. Pour la session 2027, la classe de 3e suit encore le programme de cycle 4 de 2020 : le nouveau programme n'arrive en 3e qu'à la rentrée 2028.</p>
+  </section>
+  <section class="struct">
+    <div class="part"><div class="pts">≈ 50<small>points · 1 h 10</small></div><div><h3>Compréhension, interprétation et grammaire</h3><p class="small">Questions sur un texte littéraire, parfois accompagné d'une image. Une partie porte sur la langue : classes et fonctions des mots, conjugaison, réécriture d'un passage (changer de personne, de temps ou de nombre).</p></div></div>
+    <div class="part"><div class="pts">10<small>points · 20 min</small></div><div><h3>Dictée</h3><p class="small">Un court texte en lien avec le texte étudié. Chaque erreur compte : accords, conjugaison, homophones, accents.</p></div></div>
+    <div class="part"><div class="pts">40<small>points · 1 h 30</small></div><div><h3>Rédaction</h3><p class="small">Au choix : un sujet de réflexion (argumenter) ou un sujet d'imagination (raconter, décrire). La qualité de la langue est notée : orthographe, syntaxe, vocabulaire, organisation.</p></div></div>
+  </section>
+  <p class="small muted">Barème indicatif tiré des sujets récents. Vérifie le détail auprès de ton professeur de français, qui recevra les consignes officielles de la session 2027.</p>
+  <section class="card"><h2>Les 10 minutes de relecture</h2><p class="small muted">Garde toujours 10 minutes à la fin. Relis une fois pour chaque point, pas tout en même temps.</p>
+    <ul class="clean">
+      <li><b>Les verbes</b> : flèche du verbe vers son sujet (leçon 5).</li>
+      <li><b>-é ou -er</b> : test vendre / vendu (leçon 4).</li>
+      <li><b>Les participes passés</b> : avec être, avec avoir (leçon 6).</li>
+      <li><b>Les homophones</b> : a/à, et/est, son/sont, on/ont, ce/se, ces/ses (leçons 1 à 3).</li>
+      <li><b>Les groupes nominaux</b> : chaque adjectif accordé avec son nom (leçon 11).</li>
+      <li><b>La ponctuation</b> : une majuscule au début, un point à la fin, des phrases de moins de 3 lignes.</li>
+    </ul>
+  </section>
+  <section class="grid">
+    <div class="card"><h3>Répondre à une question</h3><ul class="clean small"><li>Reprends les mots de la question.</li><li>Donne ta réponse, cite le texte entre guillemets, puis explique.</li><li>Ne réponds jamais par un seul mot.</li></ul><a class="btn quiet small" href="#ecrire-justifier">S'entraîner</a></div>
+    <div class="card"><h3>Réussir la rédaction</h3><ul class="clean small"><li>Fais un brouillon de plan en 10 minutes.</li><li>Un paragraphe par idée, avec un alinéa.</li><li>Écris des phrases courtes et justes plutôt que longues et fausses.</li></ul><a class="btn quiet small" href="#ecrire-paragraphe">S'entraîner</a></div>
+  </section>
+  <section class="small muted"><span class="eyebrow">Sources consultées</span>
+    <ul class="clean">
+      <li><a href="https://eduscol.education.gouv.fr/4362/enseigner-au-cycle-4" target="_blank" rel="noopener">Éduscol · Enseigner au cycle 4</a></li>
+      <li><a href="https://www.education.gouv.fr/les-programmes-du-college-470408" target="_blank" rel="noopener">Ministère de l'Éducation nationale · Les programmes du collège</a></li>
+      <li><a href="https://www.digischool.fr/articles/college/brevet/programme-brevet-2027/" target="_blank" rel="noopener">Digischool · Programme du brevet 2027</a></li>
+    </ul>
+  </section>`;
+}
+
+render();
+if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>
